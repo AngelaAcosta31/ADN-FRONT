@@ -1,0 +1,48 @@
+<div class="container">
+    <mat-toolbar class="color">
+      <span>{{titulo}}</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button routerLink= "/reservas">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-card style="margin-top:10px;">
+      <form [formGroup]="formulario" (ngSubmit)="guardarReserva()">
+        <mat-grid-list cols="4" rowHeight="80px">
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <input matInput type="date" placeholder="Fecha de Entrada" required formControlName="fechaEntrada"  class="form-control">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field class="ancho">
+              <input matInput type="date" placeholder="Fecha de Salida" required formControlName="fechaSalida"  class="form-control">
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2" [rowspan]="1" >
+            <mat-form-field class="ancho">
+              <mat-label>Número de Habitación</mat-label>
+              <mat-select required formControlName="idHabitacion" class="form-control">
+                <mat-option *ngFor="let item of listaHabitaciones|async" [value]="item.id" >{{item.numeroHabitacion}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2" [rowspan]="1" >
+            <mat-form-field class="ancho">
+              <mat-label>Nombre del Cliente</mat-label>
+              <mat-select required formControlName="idCliente" class="form-control">
+                <mat-option  *ngFor="let item of listaClientes|async" [value]="item.id"> Id: {{item.numeroIdentificacion}},  {{item.nombre}} {{item.apellido}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="4" [rowspan]="1" >
+            <button mat-raised-button class="anchoBoton" type="button" (click)="guardarReserva()" [disabled]="!formulario.valid" *ngIf="!reserva else botonEditar">Guardar</button>
+            <ng-template #botonEditar>
+              <button mat-raised-button type="button" (click)="actualizarReserva()"  class="anchoBoton" [disabled]="!formulario.valid">Guardar</button>
+            </ng-template>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </mat-card>
+
+</div>

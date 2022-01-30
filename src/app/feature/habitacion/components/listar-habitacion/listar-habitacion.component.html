@@ -1,0 +1,96 @@
+<div class="container">
+    <mat-toolbar style="background-color:transparent">
+      <span>Listado Habitaciones</span>
+      <span class="example-spacer"></span>
+      <div>
+        <button mat-raised-button class="colorBoton" routerLink="./crearHabitacion">Insertar Habitación</button>
+      </div>
+    </mat-toolbar>
+      <div>     
+        
+          <mat-form-field>
+              <mat-label>Filtro</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="filtro" #input>
+            </mat-form-field>
+    
+        <div class="mat-elevation-z10">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+    
+            <!-- Numero habitacion Column -->
+            <ng-container matColumnDef="numeroHabitacion">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Habitacion </th>
+              <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.numeroHabitacion}} </td>
+            </ng-container>
+            <!-- tipo  Column -->
+            <ng-container matColumnDef="tipo">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Tipo </th>
+              <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.tipo}}</td>
+            </ng-container>
+  
+            <!-- No. camas Column -->
+            <ng-container matColumnDef="noCamas">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Camas </th>
+              <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.noCamas}} </td>
+            </ng-container>
+  
+                <!-- No. baños Column -->
+            <ng-container matColumnDef="noBannos">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Baños </th>
+              <td mat-cell *matCellDef="let element"style="text-align: center;"> {{element.noBannos}}</td>
+            </ng-container>
+  
+                <!-- Descripcion Column -->
+            <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Descripción </th>
+              <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.descripcion}} </td>
+            </ng-container>
+    
+              <!-- precio Column -->
+              <ng-container matColumnDef="precio">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Precio </th>
+                <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.precio}} </td>
+              </ng-container>
+    
+                <!-- Piso Column -->
+            <ng-container matColumnDef="piso">
+              <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Piso </th>
+              <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.piso}} </td>
+            </ng-container>
+  
+               <!-- Estado Column -->
+               <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Estado</th>
+                <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.estado}} </td>
+              </ng-container>
+    
+                <!-- botones Column -->
+                <ng-container matColumnDef="acciones">
+                  <th mat-header-cell *matHeaderCellDef>  </th>
+                  <td mat-cell *matCellDef="let element; let i = index"style="text-align:center">
+                    <a  class="botones" [routerLink]="['/habitaciones/editarHabitacion/',element.numeroHabitacion]" (click)="actualizarHabitacion(element.numeroHabitacion)" style="color:rgb(19, 12, 59)" matTooltip="Editar Habitación">
+                      <mat-icon>edit</mat-icon>
+                    </a>
+                    <a  class="botones" (click)="eliminarHabitacion(element)" style="color:rgb(224, 26, 26)" matTooltip="Eliminar Habitacion">
+                      <mat-icon>delete</mat-icon>
+                    </a>
+                  </td>
+                </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+          </table>
+          
+    
+        </div>
+    
+      </div>
+    
+    </div>
+  
+  
