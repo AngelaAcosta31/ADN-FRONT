@@ -16,3 +16,4 @@ export class AppComponent {
     { url: '/habitaciones', nombre: 'Habitaciones'}
   ];
 }
+

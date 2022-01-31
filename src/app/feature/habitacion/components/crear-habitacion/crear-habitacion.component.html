@@ -12,13 +12,13 @@
           <mat-grid-tile [colspan]="2" [rowspan]="1">
             <mat-form-field class="ancho">
               <mat-label>Número Habitación</mat-label>
-              <input matInput required type="text" formControlName="numeroHabitacion"  class="form-control">
+              <input matInput required type="text" formControlName="numeroHabitacion" id="numeroHabitacion" class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Tipo</mat-label>
-              <mat-select required formControlName="tipo"  class="form-control">
+              <mat-select required formControlName="tipo" id="tipo" class="form-control">
                 <mat-option value="SENCILLA">Sencilla</mat-option>
                 <mat-option value="DOBLE">Doble</mat-option>
                 <mat-option value="TRIPLE">Triple</mat-option>
@@ -30,31 +30,31 @@
           <mat-grid-tile [colspan]="2" [rowspan]="1">
             <mat-form-field class="ancho" >
               <mat-label>Número Camas</mat-label>
-              <input matInput type="number" required formControlName="noCamas"  class="form-control">
+              <input matInput type="number" required formControlName="noCamas" id="noCamas" class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Número Baños</mat-label>
-              <input matInput type="number" required formControlName="noBannos" class="form-control">
+              <input matInput type="number" required formControlName="noBannos" id="noBannos" class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Descripción</mat-label>
-              <input matInput required formControlName="descripcion" class="form-control">
+              <input matInput required formControlName="descripcion" id="descripcion" class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Precio</mat-label>
-              <input matInput type="number" placeholder="0" required formControlName="precio"  class="form-control">
+              <input matInput type="number" placeholder="0" id="precio" required formControlName="precio"  class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Piso</mat-label>
-              <mat-select required formControlName="piso" class="form-control">
+              <mat-select required formControlName="piso" id="piso" class="form-control">
                 <mat-option value="1">1</mat-option>
                 <mat-option value="2">2</mat-option>
                 <mat-option value="3" >3</mat-option>
@@ -64,7 +64,7 @@
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Estado</mat-label>
-              <mat-select required formControlName="estado"  class="form-control">
+              <mat-select required formControlName="estado" id="estado"  class="form-control">
                 <mat-option value="D">Disponible</mat-option>
                 <mat-option value="O">Ocupado</mat-option>
                 <mat-option value="M">En mantenimiento</mat-option>
@@ -72,9 +72,9 @@
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="4" [rowspan]="1" >
-            <button mat-raised-button type="button" (click)="guardarHabitacion()" class="anchoBoton" *ngIf="!habitacion else botonEditar" [disabled]="!formulario.valid">Guardar</button>
+            <button mat-raised-button type="button" id="guardarHabitacion" (click)="guardarHabitacion()" class="anchoBoton" *ngIf="!habitacion else botonEditar" [disabled]="!formulario.valid">Guardar</button>
             <ng-template #botonEditar>
-              <button mat-raised-button type="button" (click)="actualizarHabitacion()"  class="anchoBoton" [disabled]="!formulario.valid">Guardar</button>
+              <button mat-raised-button type="button" id="actualizarHabitacion" (click)="actualizarHabitacion()"  class="anchoBoton" [disabled]="!formulario.valid">Guardar</button>
             </ng-template>
           </mat-grid-tile>
         </mat-grid-list>

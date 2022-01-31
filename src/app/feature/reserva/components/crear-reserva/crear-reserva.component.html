@@ -11,18 +11,18 @@
         <mat-grid-list cols="4" rowHeight="80px">
           <mat-grid-tile [colspan]="2" [rowspan]="1">
             <mat-form-field class="ancho">
-              <input matInput type="date" placeholder="Fecha de Entrada" required formControlName="fechaEntrada"  class="form-control">
+              <input matInput type="date" placeholder="Fecha de Entrada" required formControlName="fechaEntrada" id="fechaEntrada" class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1">
             <mat-form-field class="ancho">
-              <input matInput type="date" placeholder="Fecha de Salida" required formControlName="fechaSalida"  class="form-control">
+              <input matInput type="date" placeholder="Fecha de Salida" required formControlName="fechaSalida" id="fechaSalida" class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Número de Habitación</mat-label>
-              <mat-select required formControlName="idHabitacion" class="form-control">
+              <mat-select required formControlName="idHabitacion" id="idHabitacion" class="form-control">
                 <mat-option *ngFor="let item of listaHabitaciones|async" [value]="item.id" >{{item.numeroHabitacion}}</mat-option>
               </mat-select>
             </mat-form-field>
@@ -30,15 +30,15 @@
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Nombre del Cliente</mat-label>
-              <mat-select required formControlName="idCliente" class="form-control">
+              <mat-select required formControlName="idCliente" id="idCliente" class="form-control">
                 <mat-option  *ngFor="let item of listaClientes|async" [value]="item.id"> Id: {{item.numeroIdentificacion}},  {{item.nombre}} {{item.apellido}}</mat-option>
               </mat-select>
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="4" [rowspan]="1" >
-            <button mat-raised-button class="anchoBoton" type="button" (click)="guardarReserva()" [disabled]="!formulario.valid" *ngIf="!reserva else botonEditar">Guardar</button>
+            <button mat-raised-button class="anchoBoton" id="guardarReserva" type="button" (click)="guardarReserva()" [disabled]="!formulario.valid" *ngIf="!reserva else botonEditar">Guardar</button>
             <ng-template #botonEditar>
-              <button mat-raised-button type="button" (click)="actualizarReserva()"  class="anchoBoton" [disabled]="!formulario.valid">Guardar</button>
+              <button mat-raised-button type="button" id="editarReserva" (click)="actualizarReserva()"  class="anchoBoton" [disabled]="!formulario.valid">Guardar</button>
             </ng-template>
           </mat-grid-tile>
         </mat-grid-list>

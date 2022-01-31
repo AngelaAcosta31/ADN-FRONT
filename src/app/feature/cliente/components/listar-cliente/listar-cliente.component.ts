@@ -14,59 +14,46 @@ import { ClienteService } from '../../shared/service/cliente.service';
 })
 export class ListarClienteComponent implements OnInit {
 
-  public listaClientes:Cliente[] = [];
-  
-
-  cliente:any;
-  displayedColumns:string []=['Id','Nombre','Apellido','NoIdentificacion','Telefono','Correo','Sexo','FechaNacimiento','Direccion','acciones'];
+  public listaClientes: Cliente[] = [];
+  titulo = 'Listado Clientes';
+  cliente: any;
+  displayedColumns: string[] = [ 'Id', 'Nombre', 'Apellido', 'NoIdentificacion',  
+                                 'Telefono', 'Correo', 'Sexo', 'FechaNacimiento', 'Direccion', 'acciones'];
   dataSource = new MatTableDataSource<Cliente>(this.listaClientes);
 
-
-
-  constructor(protected clienteService: ClienteService, private _snackBar: MatSnackBar, private route:Router) { }
+  constructor(protected clienteService: ClienteService, private snackBar: MatSnackBar, private route: Router) { }
 
   ngOnInit(): void {
     this.cargarClientes();
   }
 
   cargarClientes(){
-    this.clienteService.consultar().subscribe(data =>{
+    this.clienteService.consultar().subscribe(data => {
       this.listaClientes = data;
       this.dataSource.data = this.listaClientes;
     });
-    
   }
 
- 
-  applyFilter(event:Event){
+  applyFilter(event: Event){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  eliminarCliente(idCliente:Cliente){
-    
-    this.clienteService.eliminarCliente(idCliente).subscribe(data=>{
-      if(data === true){
+  eliminarCliente(idCliente: Cliente){
+    this.clienteService.eliminarCliente( idCliente).subscribe(data => {
+      if (data === true){
         this.cliente.pop(idCliente);
       }
     });
-    
     this.cargarClientes();
-
-    //mensaje flotante de eliminar
-    this._snackBar.open('El cliente fue eliminado exitosamente','',{
-      duration:5000,
-      horizontalPosition:'center',
-      verticalPosition:'top'
-    })
-    
-
+    this.snackBar.open( 'El cliente fue eliminado exitosamente', '' , {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
   }
 
-  actualizarCliente(id:number){
-    this.route.navigate(['/editarCliente',id]);
+  actualizarCliente(id: number){
+    this.route.navigate(['/editarCliente', id]);
   }
-
-  
-
 }

@@ -3,21 +3,19 @@ import { RouterModule, Routes } from "@angular/router";
 import { CrearReservaComponent } from "./components/crear-reserva/crear-reserva.component";
 import { ListarReservaComponent } from "./components/listar-reserva/listar-reserva.component";
 
-const routes:Routes=[
+const routes: Routes = [
     {
-        path:'',
-        component:ListarReservaComponent,
+        path: '',
+        component: ListarReservaComponent,
     },
     {
-        path:'crearReserva',
-        component:CrearReservaComponent
+        path: 'crearReserva',
+        component: CrearReservaComponent,
     },
     {
-        path:'editarReserva/:id',
-        component:CrearReservaComponent
+        path: 'editarReserva/:id',
+        component: CrearReservaComponent,
     },
-    
-
 ];
 
 

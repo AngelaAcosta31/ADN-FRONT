@@ -26,7 +26,7 @@ export class CrearClienteComponent implements OnInit {
   titulo = 'Registrar Clientes';
 
   constructor(protected servicioCliente: ClienteService, private fb: FormBuilder,
-     private router: Router, private _snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) {
+              private router: Router, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -40,7 +40,7 @@ export class CrearClienteComponent implements OnInit {
       nombre: ['', [ Validators.required ]],
       apellido: ['', [ Validators.required ]],
       numeroIdentificacion: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(15) ]],
-      telefono: ['', [Validators.required,Validators.pattern('[0-9]*'), Validators.maxLength(15)]],
+      telefono: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(15)]],
       correo: ['', [Validators.required, Validators.email]],
       sexo: ['', [Validators.required, Validators.maxLength(1)]],
       fechaNacimiento: ['', [Validators.required]],
@@ -57,15 +57,14 @@ export class CrearClienteComponent implements OnInit {
 
   guardarCliente(){
     this.crearObjetoCliente();
-    this.servicioCliente.crearCliente(this.cliente).subscribe(data =>{
-      if(data){
+    this.servicioCliente.crearCliente(this.cliente).subscribe(data => {
+      if ( data ){
         this.router.navigate(['/clientes']);
       }
-    }, (e) =>{
+    }, (e) => {
       (console.error(e));
     });
-      //mensaje flotante 
-    this._snackBar.open('El cliente fue creado exitosamente','',{
+    this.snackBar.open('El cliente fue creado exitosamente', '', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top'
@@ -74,39 +73,38 @@ export class CrearClienteComponent implements OnInit {
 
   actualizar(){
     this.crearObjetoCliente();
-    this.cliente.id =this.formulario.value.id;
-    this.servicioCliente.actualizar(this.cliente).subscribe(() =>{
+    this.cliente.id = this.formulario.value.id;
+    this.servicioCliente.actualizar(this.cliente).subscribe(() => {
       this.router.navigate(['/clientes']);
     }, err => console.log(err));
   }
 
   setValoresForm(cliente){
     this.formulario.setValue({
-      id:cliente.id,
-      nombre:cliente.nombre,
-      apellido:cliente.apellido,
+      id: cliente.id,
+      nombre: cliente.nombre,
+      apellido: cliente.apellido,
       numeroIdentificacion: cliente.numeroIdentificacion,
-      telefono:cliente.telefono,
-      correo:cliente.correo,
-      sexo:cliente.sexo,
-      fechaNacimiento:cliente.fechaNacimiento,
-      direccion:cliente.direccion
+      telefono: cliente.telefono,
+      correo: cliente.correo,
+      sexo: cliente.sexo,
+      fechaNacimiento: cliente.fechaNacimiento,
+      direccion: cliente.direccion
     });
   }
 
   cargarClientes(){
     this.activatedRoute.params.subscribe(
-      (params)=>{
-        let id = params['id'];
-        if(id){
-          this.servicioCliente.consultarPorId(id).subscribe((data)=>{
-            this.cliente=data;
+      (params) => {
+        const id = params['id'];
+        if ( id ) {
+          this.servicioCliente.consultarPorId(id).subscribe((data) => {
+            this.cliente = data;
             this.setValoresForm(this.cliente);
           });
         }
       }
     );
   }
- 
 }
 

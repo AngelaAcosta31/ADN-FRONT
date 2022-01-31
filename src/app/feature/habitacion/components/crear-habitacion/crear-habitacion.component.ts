@@ -11,7 +11,7 @@ import { HabitacionService } from "../../shared/service/habitacion.service";
 })
 export class CrearHabitacionComponent implements OnInit {
 
-  habitacion:Habitacion;
+  habitacion: Habitacion;
   numeroHabitacion: string;
   tipo: string;
   noCamas: number;
@@ -20,10 +20,10 @@ export class CrearHabitacionComponent implements OnInit {
   precio: number;
   piso: string;
   estado: string;
-  formulario:FormGroup;
-  titulo='Registrar Habitación';
-  
-  constructor(protected servicioHabitacion:HabitacionService, private fb:FormBuilder,private router:Router, private activatedRoute: ActivatedRoute) {}
+  formulario: FormGroup;
+  titulo = 'Registrar Habitación';
+  constructor(  protected servicioHabitacion: HabitacionService, private fb: FormBuilder,
+                private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.crearHabitacion();
@@ -33,30 +33,30 @@ export class CrearHabitacionComponent implements OnInit {
   crearHabitacion(){
     this.formulario = this.fb.group({
       id: [''],
-      numeroHabitacion:['',[Validators.required, Validators.maxLength(5)]],
-      tipo:['',[Validators.required]],
-      noCamas:['',[Validators.required,Validators.min(1)]],
-      noBannos:['',[Validators.required, Validators.min(1)]],
-      descripcion:['',[Validators.required, Validators.maxLength(100)]],
-      precio:['',[Validators.required]],
-      piso:['',[Validators.required, Validators.maxLength(2)]],
-      estado:['',[Validators.required,Validators.maxLength(1)]]
+      numeroHabitacion: ['', [Validators.required, Validators.maxLength(5)]],
+      tipo: ['', [Validators.required]],
+      noCamas: ['', [Validators.required, Validators.min(1)]],
+      noBannos: ['', [Validators.required, Validators.min(1)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(100)]],
+      precio: ['', [Validators.required]],
+      piso: ['', [Validators.required, Validators.maxLength(2)]],
+      estado: ['', [Validators.required, Validators.maxLength(1)]]
     });
   }
 
   crearObjetoHabitacion(){
-    this.habitacion = new Habitacion(this.formulario.value.numeroHabitacion, this.formulario.value.tipo,this.formulario.value.noCamas,
-      this.formulario.value.noBannos,this.formulario.value.descripcion,this.formulario.value.precio,
+    this.habitacion = new Habitacion ( this.formulario.value.numeroHabitacion, this.formulario.value.tipo, this.formulario.value.noCamas,
+      this.formulario.value.noBannos, this.formulario.value.descripcion, this.formulario.value.precio,
       this.formulario.value.piso, this.formulario.value.estado);
   }
 
   guardarHabitacion(){
     this.crearObjetoHabitacion();
-    this.servicioHabitacion.crearHabitacion(this.habitacion).subscribe(data =>{
-      if(data){
+    this.servicioHabitacion.crearHabitacion(this.habitacion).subscribe(data => {
+      if ( data ){
         this.router.navigate(['/habitaciones']);
       }
-  }, (e)=>{
+  }, (e) => {
     (console.error(e));
   });
   }
@@ -64,9 +64,9 @@ export class CrearHabitacionComponent implements OnInit {
   actualizarHabitacion(){
     this.crearObjetoHabitacion();
     this.habitacion.id = this.formulario.value.id;
-    this.servicioHabitacion.actualizar(this.habitacion).subscribe(()=>{
+    this.servicioHabitacion.actualizar(this.habitacion).subscribe( () => {
       this.router.navigate(['/habitaciones']);
-    },er =>console.log(er));
+    }, er => console.log(er));
   }
 
   setValoresFormulario(habitacion){
@@ -85,11 +85,11 @@ export class CrearHabitacionComponent implements OnInit {
 
   cargarHabitacion(){
     this.activatedRoute.params.subscribe(
-      params=>{
-        let id = params['id'];
-        if(id){
+      params => {
+        const id = params['id'];
+        if ( id ) {
           this.servicioHabitacion.consultarPorNumeroHabitacion(id).subscribe(
-            data=>{
+            data => {
               this.habitacion = data;
               this.setValoresFormulario(this.habitacion);
             });

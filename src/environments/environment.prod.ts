@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  endpoint: '/reservacionHotel'
+  endpoint: 'http://localhost:9090/reservacionHotel'
 };

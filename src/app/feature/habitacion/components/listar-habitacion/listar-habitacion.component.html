@@ -1,9 +1,9 @@
 <div class="container">
     <mat-toolbar style="background-color:transparent">
-      <span>Listado Habitaciones</span>
+      <span>{{titulo}}</span>
       <span class="example-spacer"></span>
       <div>
-        <button mat-raised-button class="colorBoton" routerLink="./crearHabitacion">Insertar Habitación</button>
+        <button mat-raised-button class="colorBoton" id="linkCrearHabitacion" routerLink="./crearHabitacion">Insertar Habitación</button>
       </div>
     </mat-toolbar>
       <div>     
@@ -72,10 +72,10 @@
                 <ng-container matColumnDef="acciones">
                   <th mat-header-cell *matHeaderCellDef>  </th>
                   <td mat-cell *matCellDef="let element; let i = index"style="text-align:center">
-                    <a  class="botones" [routerLink]="['/habitaciones/editarHabitacion/',element.numeroHabitacion]" (click)="actualizarHabitacion(element.numeroHabitacion)" style="color:rgb(19, 12, 59)" matTooltip="Editar Habitación">
+                    <a  class="botones" id="actualizarHabitacion" [routerLink]="['/habitaciones/editarHabitacion/',element.numeroHabitacion]" (click)="actualizarHabitacion(element.numeroHabitacion)" style="color:rgb(19, 12, 59)" matTooltip="Editar Habitación">
                       <mat-icon>edit</mat-icon>
                     </a>
-                    <a  class="botones" (click)="eliminarHabitacion(element)" style="color:rgb(224, 26, 26)" matTooltip="Eliminar Habitacion">
+                    <a  class="botones" id="eliminarHabitacion" (click)="eliminarHabitacion(element)" style="color:rgb(224, 26, 26)" matTooltip="Eliminar Habitacion">
                       <mat-icon>delete</mat-icon>
                     </a>
                   </td>

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {  ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpService } from '@core/services/http.service';
 import { of } from 'rxjs/internal/observable/of';
 import { AppRoutingModule } from 'src/app/app-routing.module';
@@ -22,12 +21,12 @@ describe('CrearHabitacionComponent', () => {
   let component: CrearHabitacionComponent;
   let fixture: ComponentFixture<CrearHabitacionComponent>;
   let habitacionService: HabitacionService;
-  const detalleHabitacion = new Habitacion('230','SENCILLA',1,1,'HABITACION SENCILLA',2000,'2','D');
+  const detalleHabitacion = new Habitacion ('230', 'SENCILLA', 1, 1, 'HABITACION SENCILLA', 2000, '2', 'D');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ CrearHabitacionComponent ],
-      imports:[
+      imports: [
         CommonModule,
         HttpClientTestingModule,
         AppRoutingModule,
@@ -38,7 +37,7 @@ describe('CrearHabitacionComponent', () => {
         CoreModule
 
       ],
-      providers:[HabitacionService, MatSnackBar,HttpService]
+      providers: [HabitacionService, HttpService]
     })
     .compileComponents();
   });
@@ -49,7 +48,7 @@ describe('CrearHabitacionComponent', () => {
     habitacionService = TestBed.inject(HabitacionService);
     spyOn(habitacionService, 'crearHabitacion').and.returnValue(
       of(true)
-    )
+    );
     fixture.detectChanges();
   });
 
@@ -57,12 +56,23 @@ describe('CrearHabitacionComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('El formulario es inavlido porque esta vacio',()=>{
-    expect(component.formulario.valid).toBeFalsy();
-    
+  it('El objeto habitacion debe ser indefinido', () => {
+    expect(component.habitacion).toBeUndefined();
   });
 
-  it('Deberia crear la habitacion',()=>{
+  it('crear el objeto de habitacion y que sea definido', () => {
+    component.habitacion = detalleHabitacion;
+    expect(component.habitacion).toBeDefined();
+  });
+  it('El formulario es inavlido porque esta vacio', () => {
+    expect(component.formulario.valid).toBeFalsy();
+  });
+
+  it(`Comprobar que sea 'Registrar Habitación'`, () => {
+    expect(component.titulo).toEqual('Registrar Habitación');
+  });
+
+  it('Deberia crear la habitacion', () => {
     component.formulario.controls.numeroHabitacion.setValue(detalleHabitacion.numeroHabitacion);
     component.formulario.controls.tipo.setValue(detalleHabitacion.tipo);
     component.formulario.controls.noCamas.setValue(detalleHabitacion.noCamas);
@@ -73,6 +83,14 @@ describe('CrearHabitacionComponent', () => {
     component.formulario.controls.estado.setValue(detalleHabitacion.estado);
     expect(component.formulario.valid).toBeTruthy();
     component.guardarHabitacion();
-  })
-  
+  });
+
+  it('Deberia actualizar la habitacion', () => {
+    component.habitacion = detalleHabitacion;
+    const spy = spyOn(habitacionService, 'actualizar').and.returnValue(
+      of(true)
+    );
+    component.actualizarHabitacion();
+    expect(spy).toHaveBeenCalled();
+  });
 });

@@ -8,7 +8,7 @@ import { ErrorCamposPlantillaComponent } from './directivas/error-campos/compone
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TrackByPipe } from './pipe/track-by.pipe';
 
-//Angular Material
+// Angular Material
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';

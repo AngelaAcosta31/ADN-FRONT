@@ -18,7 +18,7 @@ describe('CrearClienteComponent', () => {
   let component: CrearClienteComponent;
   let fixture: ComponentFixture<CrearClienteComponent>;
   let clienteService: ClienteService;
-  const detalleCliente = new Cliente('prueba','unitaria','1258741','25874136','prueba@GMAIL.COM','M','2000-04-14','CALLE 22');
+  const detalleCliente = new Cliente('prueba', 'unitaria', '1258741', '25874136', 'prueba@GMAIL.COM', 'M', '2000-04-14', 'CALLE 22');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -51,16 +51,22 @@ describe('CrearClienteComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('El formulario es inavlido porque esta vacio',()=>{
+
+  it('El objeto cliente debe ser indefinido', () => {
+    expect(component.cliente).toBeUndefined();
+  });
+
+  it('crear el objeto de cliente y que sea definido', () => {
+    component.cliente = detalleCliente;
+    expect(component.cliente).toBeDefined();
+  });
+  it('El formulario es inavlido porque esta vacio', () => {
     expect(component.formulario.valid).toBeFalsy();
   });
-  
-  it(`Comprobar que sea 'Registrar Clientes'`,()=>{
+  it(`Comprobar que sea 'Registrar Clientes'`, () => {
     expect(component.titulo).toEqual('Registrar Clientes');
-  })
- 
-
-  it('Deberia crear el cliente',()=>{
+  });
+  it('Deberia crear el cliente', () => {
     component.formulario.controls.nombre.setValue(detalleCliente.nombre);
     component.formulario.controls.apellido.setValue(detalleCliente.apellido);
     component.formulario.controls.numeroIdentificacion.setValue(detalleCliente.numeroIdentificacion);
@@ -71,6 +77,14 @@ describe('CrearClienteComponent', () => {
     component.formulario.controls.direccion.setValue(detalleCliente.direccion);
     expect(component.formulario.valid).toBeTruthy();
     component.guardarCliente();
-  })
-  
+  });
+
+  it('Deberia actualizar el cliente', () => {
+    component.cliente = detalleCliente;
+    const spy = spyOn(clienteService, 'actualizar').and.returnValue(
+      of(true)
+    );
+    component.actualizar();
+    expect(spy).toHaveBeenCalled();
+  });     
 });

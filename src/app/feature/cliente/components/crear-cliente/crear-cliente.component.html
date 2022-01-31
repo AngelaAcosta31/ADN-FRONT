@@ -13,37 +13,37 @@
           <mat-grid-tile [colspan]="2" [rowspan]="1">
             <mat-form-field class="ancho">
               <mat-label>Nombre</mat-label>
-              <input matInput required formControlName="nombre" name="nombre"  class="form-control">
+              <input matInput required formControlName="nombre" id="nombre"  class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Apellido</mat-label>
-              <input matInput required formControlName="apellido" name="apellido"  class="form-control">
+              <input matInput required formControlName="apellido" id="apellido"  class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1">
             <mat-form-field class="ancho" >
               <mat-label>Numero Identificación</mat-label>
-              <input matInput required formControlName="numeroIdentificacion"  name="numeroIdentificacion"  class="form-control">
+              <input matInput required formControlName="numeroIdentificacion"  id="numeroIdentificacion"  class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Telefono</mat-label>
-              <input matInput formControlName="telefono"  name="telefono"  class="form-control">
+              <input matInput formControlName="telefono"  id="telefono"  class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Correo</mat-label>
-              <input matInput type="email" required formControlName="correo"  name="correo"   class="form-control">
+              <input matInput type="email" required formControlName="correo"  id="correo"   class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Genero</mat-label>
-              <mat-select required formControlName="sexo"  name="sexo"  class="form-control">
+              <mat-select required formControlName="sexo"  id="sexo"  class="form-control">
                 <mat-option value="F">Femenino</mat-option>
                 <mat-option value="M">Masculino</mat-option>
                 <mat-option value="O">Sin especificar</mat-option>
@@ -52,19 +52,19 @@
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1">
             <mat-form-field class="ancho">
-              <input matInput  type="date"   name="fechaNacimiento" placeholder="Fecha de Nacimiento"   required formControlName="fechaNacimiento" class="form-control">
+              <input matInput  type="date"   id="fechaNacimiento" placeholder="Fecha de Nacimiento"   required formControlName="fechaNacimiento" class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="2" [rowspan]="1" >
             <mat-form-field class="ancho">
               <mat-label>Dirección</mat-label>
-              <input matInput formControlName="direccion"  name="direccion"  class="form-control">
+              <input matInput formControlName="direccion"  id="direccion"  class="form-control">
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="4" [rowspan]="2" >
-            <button mat-raised-button type="button" (click)="guardarCliente()"  class="anchoBoton" [disabled]="!formulario.valid" *ngIf="!cliente else botonEditar">Guardar</button>
+            <button mat-raised-button type="button" id="guardarCliente" (click)="guardarCliente()"  class="anchoBoton" [disabled]="!formulario.valid" *ngIf="!cliente else botonEditar">Guardar</button>
             <ng-template #botonEditar>
-              <button mat-raised-button type="button" (click)="actualizar()"  class="anchoBoton" [disabled]="!formulario.valid">Guardar</button>
+              <button mat-raised-button type="button" id="editar" (click)="actualizar()"  class="anchoBoton" [disabled]="!formulario.valid">Guardar</button>
             </ng-template>
           </mat-grid-tile>
         </mat-grid-list>

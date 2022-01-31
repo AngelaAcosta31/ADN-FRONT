@@ -8,7 +8,7 @@ import { CrearClienteComponent } from './components/crear-cliente/crear-cliente.
 const routes: Routes = [
     {
         path: '',
-        component: ListarClienteComponent,  
+        component: ListarClienteComponent,    
     },
     {
         path: 'crearCliente',

@@ -12,48 +12,47 @@ import { ReservaService } from '../../shared/service/reserva.service';
 })
 export class ListarReservaComponent implements OnInit {
 
-  public listaReservas:Reserva[]=[];
-
-  reservas:any;
-  displayedColumns:string []=['id','valor','fechaEntrada','fechaSalida','idHabitacion', 'idCliente','acciones'];
+  public listaReservas: Reserva[] = [];
+  titulo = 'Listado Reservas';
+  reservas: any;
+  displayedColumns: string[] = ['id', 'valor', 'fechaEntrada', 'fechaSalida', 'idHabitacion', 'idCliente', 'acciones'];
   dataSource = new MatTableDataSource<Reserva>(this.listaReservas);
 
-  constructor(protected reservaService: ReservaService, private _snackBar: MatSnackBar, private route:Router) { }
+  constructor(protected reservaService: ReservaService, private snackBar: MatSnackBar, private route: Router) { }
 
   ngOnInit(): void {
     this.cargarReservas();
   }
 
   cargarReservas(){
-     this.reservaService.consultar().subscribe(data =>{
+     this.reservaService.consultar().subscribe(data => {
        this.listaReservas = data;
        this.dataSource.data = this.listaReservas;
      });
   }
 
-  
-  applyFilter(event:Event){
+  applyFilter(event: Event){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  eliminarReserva(reserva:Reserva){
-    this.reservaService.eliminarReserva(reserva).subscribe(data=>{
-      if(data === true){
+  eliminarReserva(reserva: Reserva){
+    this.reservaService.eliminarReserva(reserva).subscribe(data => {
+      if ( data === true){
         this.reservas.pop(reserva);
       }
     });
     this.cargarReservas();
 
-    this._snackBar.open('La reserva se ha eliminado exitosamente','',{
-      duration:5000,
-      horizontalPosition:'center',
-      verticalPosition:'top'
-    })
+    this.snackBar.open('La reserva se ha eliminado exitosamente', '', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
   }
 
-  actualizarReserva(id:number){
-    this.route.navigate(['/editarReserva',id]);
+  actualizarReserva(id: number){
+    this.route.navigate(['/editarReserva', id]);
   }
 
 }

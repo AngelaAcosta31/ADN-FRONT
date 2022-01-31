@@ -18,15 +18,16 @@ describe('ListarClienteComponent', () => {
   let component: ListarClienteComponent;
   let fixture: ComponentFixture<ListarClienteComponent>;
   let clienteService: ClienteService;
-  const listadoClientes: Cliente[]=[
-    new Cliente('Angela','Acosta','15871','54488','ange@gmail.com','F','2000-07-30','prueba'),
-    new Cliente('paulaa','Acosta','15874334','544883543','pauli@gmail.com','F','2000-07-30','pruebassw'),
+  const listadoClientes: Cliente[] = [
+    new Cliente ('Angela', 'Acosta', '15871', '54488', 'ange@gmail.com', 'F', '2000-07-30', 'prueba'),
+    new Cliente ('paulaa', 'Acosta', '15874334', '544883543', 'pauli@gmail.com', 'F', '2000-07-30', 'pruebassw'),
   ];
+  const detalleCliente = new Cliente ('paulaa', 'Acosta', '15874334', '544883543', 'pauli@gmail.com', 'F', '2000-07-30', 'pruebassw');
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ListarClienteComponent ],
-      imports:[
+      imports: [
         CommonModule,
         HttpClientTestingModule,
         AppRoutingModule,
@@ -36,7 +37,7 @@ describe('ListarClienteComponent', () => {
         SharedModule,
         BrowserAnimationsModule
       ],
-      providers:[ClienteService, HttpService]
+      providers: [ClienteService, HttpService]
     })
     .compileComponents();
   });
@@ -55,9 +56,21 @@ describe('ListarClienteComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Comprobar tamaño de la lista de clientes', ()=>{
+  it(`Comprobar que el titulo sea 'Listado Clientes'`, () => {
+    expect(component.titulo).toEqual('Listado Clientes');
+  });
+
+  it('Comprobar tamaño de la lista de clientes', () => {
     component.cargarClientes();
     expect(clienteService.consultar).toHaveBeenCalled();
     expect(2).toBe(component.listaClientes.length);
+  });
+
+  it('Eliminar cliente', () => {
+    const spy = spyOn(clienteService, 'eliminarCliente').and.returnValue(
+      of(true)
+    );
+    component.eliminarCliente(detalleCliente);
+    expect(spy).toHaveBeenCalled();
   });
 });

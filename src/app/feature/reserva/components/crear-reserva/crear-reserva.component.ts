@@ -17,20 +17,21 @@ import { ReservaService } from '../../shared/service/reserva.service';
 })
 export class CrearReservaComponent implements OnInit {
 
-  reserva:Reserva;
-  listaHabitaciones:Observable<Habitacion[]>;
-  listaClientes:Observable<Cliente[]>;
+  reserva: Reserva;
+  listaHabitaciones: Observable <Habitacion[] >;
+  listaClientes: Observable<Cliente[]>;
   id: number;
-  valor:number;
-  fechaEntrada:string;
-  fechaSalida:string;
-  idHabitacion:number;
-  idCliente:number;
-  formulario:FormGroup;
-  titulo='Registrar Reservas';
+  valor: number;
+  fechaEntrada: string;
+  fechaSalida: string;
+  idHabitacion: number;
+  idCliente: number;
+  formulario: FormGroup;
+  titulo = 'Registrar Reservas';
 
-
-  constructor(protected servicioReserva:ReservaService,  private _snackBar:MatSnackBar, protected servicioHabitacion: HabitacionService, protected servicioCliente:ClienteService,private fb:FormBuilder, private route:Router, private activeRouter:ActivatedRoute) { }
+  constructor( protected servicioReserva: ReservaService,  private snackBar: MatSnackBar,
+               protected servicioHabitacion: HabitacionService, protected servicioCliente: ClienteService,
+               private fb: FormBuilder, private route: Router, private activeRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.obtenerTodasLasHabitaciones();
@@ -43,30 +44,29 @@ export class CrearReservaComponent implements OnInit {
     this.formulario = this.fb.group({
       id: [''],
       valor: [''],
-      fechaEntrada:['',[Validators.required]],
-      fechaSalida:['',[Validators.required]],
-      idHabitacion:['',[Validators.required]],
-      idCliente:['',[Validators.required]]
+      fechaEntrada: ['', [Validators.required]],
+      fechaSalida: ['', [Validators.required]],
+      idHabitacion: ['', [Validators.required]],
+      idCliente: ['', [Validators.required]]
     });
   }
 
   crearObjetoReserva(){
-    this.reserva = new Reserva(this.formulario.value.valor, this.formulario.value.fechaEntrada,
+    this.reserva = new Reserva (this.formulario.value.valor, this.formulario.value.fechaEntrada,
       this.formulario.value.fechaSalida, this.formulario.value.idHabitacion,
       this.formulario.value.idCliente);
   }
 
   guardarReserva(){
     this.crearObjetoReserva();
-    this.servicioReserva.crearReserva(this.reserva).subscribe(data =>{
-      if(data){
+    this.servicioReserva.crearReserva(this.reserva).subscribe( data => {
+      if ( data){
         this.route.navigate(['/reservas']);
       }
-    }, (e) =>{
+    }, (e) => {
       (console.error(e));
     });
-     //mensaje flotante 
-     this._snackBar.open('La reserva fue creada exitosamente','',{
+    this.snackBar.open( 'La reserva fue creada exitosamente', '', {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top'
@@ -86,7 +86,7 @@ export class CrearReservaComponent implements OnInit {
     this.reserva.id = this.formulario.value.id;
     this.reserva.valor = this.formulario.value.valor;
     this.servicioReserva.actualizar(this.reserva).subscribe(
-      ()=>{
+      () => {
         this.route.navigate(['/reservas']);
       }, er => console.log(er));
   }
@@ -104,17 +104,14 @@ export class CrearReservaComponent implements OnInit {
 
   cargarReserva(){
     this.activeRouter.params.subscribe(
-      params=>{
-        let id =params['id'];
-        if(id){
-          this.servicioReserva.consultarPorIdReserva(id).subscribe((data)=>{
+      params => {
+        const id = params['id'];
+        if (id){
+          this.servicioReserva.consultarPorIdReserva(id).subscribe((data) => {
             this.reserva = data;
             this.setValoresFormulario(this.reserva);
           });
-        }
-      }
-    )
+        }});
   }
-
 
 }

@@ -12,51 +12,47 @@ import { HabitacionService } from '../../shared/service/habitacion.service';
 })
 export class ListarHabitacionComponent implements OnInit {
 
-  public listaHabitaciones:Habitacion[]=[];
-  habitacion:any;
- 
-
-  displayedColumns:string[]=['id','numeroHabitacion','tipo','noCamas','noBannos','descripcion','precio','piso','estado','acciones'];
+  public listaHabitaciones: Habitacion[] = [];
+  habitacion: any;
+  titulo = 'Listado Habitaciones';
+  displayedColumns: string[] = ['id', 'numeroHabitacion', 'tipo', 'noCamas', 'noBannos', 'descripcion', 'precio', 'piso', 'estado', 'acciones'];
   dataSource = new MatTableDataSource<Habitacion>(this.listaHabitaciones);
 
-  constructor(protected habitacionService:HabitacionService, private _snackBar:MatSnackBar, private route:Router) { }
+  constructor(protected habitacionService: HabitacionService, private snackBar: MatSnackBar, private route: Router) {}
 
   ngOnInit(): void {
     this.cargarHabitaciones();
   }
 
   cargarHabitaciones(){
-    this.habitacionService.consultar().subscribe(data =>{
+    this.habitacionService.consultar().subscribe(data => {
       this.listaHabitaciones = data;
       this.dataSource.data = this.listaHabitaciones;
     });
   }
-
-  
-  applyFilter(event:Event){
+        
+  applyFilter(event: Event){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  eliminarHabitacion(habitacion:Habitacion){
-    this.habitacionService.eliminarHabitacion(habitacion.id).subscribe(data=>{
-      if(data ===true){
+  eliminarHabitacion(habitacion: Habitacion){
+    this.habitacionService.eliminarHabitacion(habitacion.id).subscribe(data => {
+      if ( data === true ){
         this.habitacion.pop(habitacion);
       }
     });
     this.cargarHabitaciones();
 
-    this._snackBar.open('La habitación se ha eliminado exitosamente','',{
-      duration:5000,
-      horizontalPosition:'center',
-      verticalPosition:'top'
-    })
+    this.snackBar.open('La habitación se ha eliminado exitosamente', '', {
+      duration: 5000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
   }
 
-  actualizarHabitacion(id:number){
-    this.route.navigate(['/editarHabitacion',id]);
+  actualizarHabitacion(id: number){
+    this.route.navigate(['/editarHabitacion', id]);
   }
-
-
 
 }
