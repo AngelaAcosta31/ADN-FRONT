@@ -27,7 +27,7 @@ pipeline {
             submoduleCfg: [],
             userRemoteConfigs: [[
             credentialsId: 'GitHub_AngelaAcosta31', 
-            url:'https://github.com/AngelaAcosta31/ADN-FRONT.git'
+            url:'https://github.com/AngelaAcosta31/ADN-FRONT'
             ]]
         ])
       }
