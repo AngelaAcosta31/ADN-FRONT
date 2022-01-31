@@ -1,7 +1,7 @@
 pipeline {
 //Donde se va a ejecutar el Pipeline
   agent {
-    label 'Slave4_Induccion'
+    label 'Slave_Induccion'
   }
 
 //Opciones específicas de Pipeline dentro del Pipeline
@@ -12,7 +12,6 @@ pipeline {
 //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
     jdk 'JDK8_Centos'
-    gradle 'Gradle5.0_Centos'
   }
 //Aquí comienzan los “items” del Pipeline
   stages{
@@ -28,47 +27,47 @@ pipeline {
             submoduleCfg: [],
             userRemoteConfigs: [[
             credentialsId: 'GitHub_AngelaAcosta31', 
-            url:'https://github.com/AngelaAcosta31/ADN-FRONT'
+            url:'https://github.com/AngelaAcosta31/ADN-FRONT.git'
             ]]
         ])
       }
     }
 
-
-     stage('Npm install') {
+    stage('Test') {
       steps{
-        echo "------------>Installing<------------"
-        sh 'npm install'
+        echo "------------>Test<------------"
+        sh 'npm run test -- --watch=false --browsers ChromeHeadless'
       }
     }
-    
-    stage('Static Code Analysis'){
-        steps{
-            echo '------------>Analisis de código estático<------------'
-            withSonarQubeEnv('Sonar') {
-                     sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-            }
-        }
+
+     stage('Static Code Analysis') {
+      steps{
+          echo '------------>Análisis de código estático<------------'
+          withSonarQubeEnv('Sonar') {
+            sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+          }
+      }
     }
 
-
     stage('Build') {
-            steps {
-              echo '------------>Building<------------'
-              sh 'ng build'
-            }
-        }
+      steps {
+        echo "------------>Build<------------"
+        sh 'npm run build'
+      }
+    }
+
   }
+
   post {
     always {
       echo 'This will always run'
     }
     success {
       echo 'This will run only if successful'
-     }
+    }
     failure {
       echo 'This will run only if failed'
-     }
+    }
     unstable {
       echo 'This will run only if the run was marked as unstable'
     }
