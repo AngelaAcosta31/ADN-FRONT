@@ -12,6 +12,7 @@ pipeline {
 //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
     jdk 'JDK8_Centos'
+    gradle 'Gradle5.0_Centos'
   }
 //Aquí comienzan los “items” del Pipeline
   stages{
