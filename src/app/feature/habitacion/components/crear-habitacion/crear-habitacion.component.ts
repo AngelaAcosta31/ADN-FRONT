@@ -63,7 +63,7 @@ export class CrearHabitacionComponent implements OnInit {
         this.router.navigate(['/habitaciones']);
       }
   }, (e) => {
-    (console.error(e));
+    e.error().mensaje;
   });
   }
 
@@ -72,7 +72,7 @@ export class CrearHabitacionComponent implements OnInit {
     this.habitacion.id = this.formulario.value.id;
     this.servicioHabitacion.actualizar(this.habitacion).subscribe( () => {
       this.router.navigate(['/habitaciones']);
-    }, er => console.log(er));
+    }, er => er.error().mensaje);
   }
 
   setValoresFormulario(habitacion){

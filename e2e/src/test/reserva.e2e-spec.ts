@@ -1,6 +1,6 @@
-import { NavbarPage } from "../page/navbar/navbar.po";
-import { ReservaCrearPage } from "../page/reserva/reserva-crear.po";
-import { ReservaListarPage } from "../page/reserva/reserva-listar.po";
+import { NavbarPage } from '../page/navbar/navbar.po';
+import { ReservaCrearPage } from '../page/reserva/reserva-crear.po';
+import { ReservaListarPage } from '../page/reserva/reserva-listar.po';
 
 describe('workspace-project  Reserva', () => {
     let navBar: NavbarPage;

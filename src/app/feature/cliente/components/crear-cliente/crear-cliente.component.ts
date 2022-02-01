@@ -79,7 +79,8 @@ export class CrearClienteComponent implements OnInit {
     this.cliente.id = this.formulario.value.id;
     this.servicioCliente.actualizar(this.cliente).subscribe(() => {
       this.router.navigate(['/clientes']);
-    }, err => console.log(err));
+    }, err => err.error().mensaje,
+    );
   }
 
   setValoresForm(cliente){

@@ -1,6 +1,6 @@
-import { HabitacionCrearPage } from "../page/habitacion/habitacion-crear.po";
-import { HabitacionListarPage } from "../page/habitacion/habitacion-listar.po";
-import { NavbarPage } from "../page/navbar/navbar.po";
+import { HabitacionCrearPage } from '../page/habitacion/habitacion-crear.po';
+import { HabitacionListarPage } from '../page/habitacion/habitacion-listar.po';
+import { NavbarPage } from '../page/navbar/navbar.po';
 
 describe('workspace-project Habitacion', () => {
     let navBar: NavbarPage;

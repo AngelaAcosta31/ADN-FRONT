@@ -64,7 +64,7 @@ export class CrearReservaComponent implements OnInit {
         this.route.navigate(['/reservas']);
       }
     }, (e) => {
-      (console.error(e));
+      e.error().mensaje;
     });
     this.snackBar.open( 'La reserva fue creada exitosamente', '', {
       duration: 5000,
@@ -88,7 +88,7 @@ export class CrearReservaComponent implements OnInit {
     this.servicioReserva.actualizar(this.reserva).subscribe(
       () => {
         this.route.navigate(['/reservas']);
-      }, er => console.log(er));
+      }, er => er.error().mensaje);
   }
 
   setValoresFormulario(reserva){
