@@ -71,5 +71,6 @@ describe('ListarHabitacionComponent', () => {
     );
     component.eliminarHabitacion(detalleHabitacion);
     expect(spy).toHaveBeenCalled();
+    fixture.destroy();
   });
 });

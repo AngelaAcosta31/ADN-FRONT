@@ -22,7 +22,7 @@ describe('CrearClienteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CrearClienteComponent ],
+      
       imports: [
         CommonModule,
         HttpClientTestingModule,

@@ -4,7 +4,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '@core/core.module';
-import { HttpService } from '@core/services/http.service';
 import { SharedModule } from '@shared/shared.module';
 import { of } from 'rxjs/internal/observable/of';
 import { AppRoutingModule } from 'src/app/app-routing.module';
@@ -26,7 +25,7 @@ describe('ListarReservaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListarReservaComponent ],
+      
       imports: [
         CommonModule,
         HttpClientTestingModule,
@@ -37,7 +36,7 @@ describe('ListarReservaComponent', () => {
         SharedModule,
         BrowserAnimationsModule
       ],
-      providers: [ReservaService, HttpService]
+      providers: [ReservaService]
     })
     .compileComponents();
   });

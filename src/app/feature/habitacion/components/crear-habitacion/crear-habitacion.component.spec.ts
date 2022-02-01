@@ -25,7 +25,7 @@ describe('CrearHabitacionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CrearHabitacionComponent ],
+
       imports: [
         CommonModule,
         HttpClientTestingModule,
