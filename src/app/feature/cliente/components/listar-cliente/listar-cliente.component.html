@@ -15,62 +15,63 @@
   
       <div class="mat-elevation-z10">
         <table mat-table [dataSource]="dataSource" matSort>
+          <caption>Tabla de clientes registrados</caption>
           <!-- ID Column -->
           <ng-container matColumnDef="Id" >
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> ID </th>
+            <th mat-header-cell *matHeaderCellDef id="id" style="text-align: center;"> ID </th>
             <td mat-cell *matCellDef="let element"> {{element.id}} </td>
           </ng-container>
   
           <!-- NOMBRE Column -->
           <ng-container matColumnDef="Nombre">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nombre </th>
+            <th mat-header-cell id="nombre" *matHeaderCellDef style="text-align: center;"> Nombre </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.nombre}} </td>
           </ng-container>
           <!-- APELLIDO  Column -->
           <ng-container matColumnDef="Apellido">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Apellido </th>
+            <th mat-header-cell *matHeaderCellDef id="apellido" style="text-align: center;"> Apellido </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.apellido}}</td>
           </ng-container>
 
           <!-- IDENTIFICACION Column -->
           <ng-container matColumnDef="NoIdentificacion">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;" mat-sort-header> Identificación </th>
+            <th mat-header-cell *matHeaderCellDef id="identificacion" style="text-align: center;" mat-sort-header> Identificación </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.numeroIdentificacion}} </td>
           </ng-container>
 
               <!-- TELEFONO Column -->
           <ng-container matColumnDef="Telefono">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Telefono </th>
+            <th mat-header-cell *matHeaderCellDef id="telefono" style="text-align: center;"> Telefono </th>
             <td mat-cell *matCellDef="let element"style="text-align: center;"> {{element.telefono}}</td>
           </ng-container>
 
               <!-- CORREO Column -->
           <ng-container matColumnDef="Correo">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Correo </th>
+            <th mat-header-cell *matHeaderCellDef id="correo" style="text-align: center;"> Correo </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.correo}} </td>
           </ng-container>
   
             <!-- SEXO Column -->
             <ng-container matColumnDef="Sexo">
-              <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Sexo </th>
+              <th mat-header-cell *matHeaderCellDef id="sexo" style="text-align: center;"> Sexo </th>
               <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.sexo}} </td>
             </ng-container>
   
               <!-- NACIMIENTO Column -->
           <ng-container matColumnDef="FechaNacimiento">
-            <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Nacimiento </th>
+            <th mat-header-cell *matHeaderCellDef id="nacimiento" style="text-align: center;"> Nacimiento </th>
             <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.fechaNacimiento}} </td>
           </ng-container>
 
              <!-- DIRECCION Column -->
              <ng-container matColumnDef="Direccion">
-              <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Direccion</th>
+              <th mat-header-cell *matHeaderCellDef id="direccion" style="text-align: center;"> Direccion</th>
               <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.direccion}} </td>
             </ng-container>
   
               <!-- botones Column -->
               <ng-container matColumnDef="acciones">
-                <th mat-header-cell *matHeaderCellDef>  </th>
+                <th mat-header-cell *matHeaderCellDef id="acciones"></th>
                 <td mat-cell *matCellDef="let element; let i = index"style="text-align:center">
                   <a  class="botones" id="editarCliente" [routerLink]="['/clientes/editarCliente/',element.numeroIdentificacion]" (click)="actualizarCliente(element.numeroIdentificacion)" style="color:rgb(19, 12, 59)" matTooltip="Editar Cliente">
                     <mat-icon>edit</mat-icon>
