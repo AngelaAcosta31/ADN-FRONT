@@ -61,7 +61,7 @@ describe('HabitacionService', () => {
     req.event(new HttpResponse<boolean>({body: true}));
   });
 
-  it('Deberia actualizar una haitacion', () => {
+  it('Deberia actualizar una habitacion', () => {
     const dummyHabitacion = new Habitacion ('120', 'SENCILLA', 1, 1, 'HABITACION CON TV Y NEVERA', 40000, '1', 'D');
     dummyHabitacion.id = 1;
     servicioHabitacion.actualizar(dummyHabitacion).subscribe((respuesta) => {
@@ -69,6 +69,16 @@ describe('HabitacionService', () => {
     });
     const req = httpMock.expectOne(`${URL}/1`);
     expect(req.request.method).toBe('PUT');
+    req.event(new HttpResponse<boolean>({body: true}));
+  });
+
+  it('Deberia buscar por numero habitacion', () => {
+    const dummyHabitacion = '100';
+    servicioHabitacion.consultarPorNumeroHabitacion(dummyHabitacion).subscribe((respuesta) => {
+      expect(respuesta).toEqual(true);
+    });
+    const req = httpMock.expectOne(`${URL}/numeroHabitacion/100`);
+    expect(req.request.method).toBe('GET');
     req.event(new HttpResponse<boolean>({body: true}));
   });
 });

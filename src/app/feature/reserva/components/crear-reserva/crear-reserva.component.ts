@@ -63,8 +63,6 @@ export class CrearReservaComponent implements OnInit {
       if ( data){
         this.route.navigate(['/reservas']);
       }
-    }, (e) => {
-      e.error().mensaje;
     });
     this.snackBar.open( 'La reserva fue creada exitosamente', '', {
       duration: 5000,

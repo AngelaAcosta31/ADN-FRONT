@@ -74,4 +74,14 @@ describe('ClienteService', () => {
     expect(req.request.method).toBe('PUT');
     req.event(new HttpResponse<boolean>({body: true}));
   });
+
+  it('Deberia buscar por id', () => {
+    const dummyCliente = '1';
+    servicioCliente.consultarPorId(dummyCliente).subscribe((respuesta) => {
+      expect(respuesta).toEqual(true);
+    });
+    const req = httpMock.expectOne(`${URL}/numeroId/1`);
+    expect(req.request.method).toBe('GET');
+    req.event(new HttpResponse<boolean>({body: true}));
+  });
 });
