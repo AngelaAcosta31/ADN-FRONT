@@ -73,4 +73,11 @@ describe('ListarHabitacionComponent', () => {
     expect(spy).toHaveBeenCalled();
     fixture.destroy();
   });
+  it('Error al intentar eliminar habitación', () => {
+    const spy = spyOn(servicioHabitacion, 'eliminarHabitacion').and.returnValue(
+      of(false)
+    );
+    component.eliminarHabitacion(detalleHabitacion);
+    expect(spy).toHaveBeenCalled();
+  });
 });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from '../../shared/model/cliente';
@@ -48,7 +48,7 @@ export class CrearClienteComponent implements OnInit {
       telefono: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(MAX_TELEFONO)]],
       correo: ['', [Validators.required, Validators.email]],
       sexo: ['', [Validators.required, Validators.maxLength(MAX_SEXO)]],
-      fechaNacimiento: ['', [Validators.required]],
+      fechaNacimiento: ['', [Validators.required, this.validateFechaNacimiento]],
       direccion: ['', [Validators.required]]
     });
   }
@@ -73,14 +73,25 @@ export class CrearClienteComponent implements OnInit {
         this.router.navigate(['/clientes']);
       }
     }, (e) => {
-      console.log(e);
+
       this.hayErrores = true;
       this.mensajeError = e.error.mensaje;
-      console.log(this.hayErrores);
+
     });
 
 
     
+  }
+
+  validateFechaNacimiento(control: FormControl) {
+    const fechaNacimiento = new Date(control.value);
+    const fechaActual = new Date();
+    fechaActual.setDate(fechaActual.getDate()-1);
+    if (fechaNacimiento.getTime() >= fechaActual.getTime()) {
+          return { validateFechaNacimiento: true };
+        } else {
+      return null;
+    }
   }
 
   actualizar(){

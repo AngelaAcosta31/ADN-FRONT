@@ -5,7 +5,7 @@ import { CrearClienteComponent } from './components/crear-cliente/crear-cliente.
 
 
 
-const routes: Routes = [
+export const routes: Routes = [
     {
         path: '',
         component: ListarClienteComponent,    

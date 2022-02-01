@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
-import { of } from 'rxjs';
+import { of, throwError} from 'rxjs';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ClienteRoutingModule } from '../../cliente-routing.module';
 import { Cliente } from '../../shared/model/cliente';
@@ -42,9 +42,6 @@ describe('CrearClienteComponent', () => {
     fixture = TestBed.createComponent(CrearClienteComponent);
     component = fixture.componentInstance;
     clienteService = TestBed.inject(ClienteService);
-    spyOn(clienteService, 'crearCliente').and.returnValue(
-      of(true)
-    );
     fixture.detectChanges();
   });
 
@@ -76,10 +73,14 @@ describe('CrearClienteComponent', () => {
     component.formulario.controls.fechaNacimiento.setValue(detalleCliente.fechaNacimiento);
     component.formulario.controls.direccion.setValue(detalleCliente.direccion);
     expect(component.formulario.valid).toBeTruthy();
+    const spy = spyOn(clienteService, 'crearCliente').and.returnValue(
+      of(true)
+    );
     component.guardarCliente();
+    expect(spy).toHaveBeenCalled();
     
   });
-/*
+
   it('Mensaje de error al crear el cliente', () => {
     component.formulario.controls.nombre.setValue(detalleCliente.nombre);
     component.formulario.controls.apellido.setValue(detalleCliente.apellido);
@@ -87,14 +88,17 @@ describe('CrearClienteComponent', () => {
     component.formulario.controls.telefono.setValue(detalleCliente.telefono);
     component.formulario.controls.correo.setValue(detalleCliente.correo);
     component.formulario.controls.sexo.setValue(detalleCliente.sexo);
-    component.formulario.controls.fechaNacimiento.setValue('2023-02-01');
+    component.formulario.controls.fechaNacimiento.setValue('2022-02-01');
     component.formulario.controls.direccion.setValue(detalleCliente.direccion);
     expect(component.formulario.valid).toBeFalse();
-    component.guardarCliente();
-    //expect(component.hayErrores).toBeTruthy();
+    const spy = spyOn(clienteService, 'crearCliente').and.returnValue(
+      throwError({error:{mensaje:''}}),
+    );
+      component.guardarCliente();
+      expect(spy).toHaveBeenCalled();
     
   });
-**/
+
   it('Deberia actualizar el cliente', () => {
     component.cliente = detalleCliente;
     const spy = spyOn(clienteService, 'actualizar').and.returnValue(
