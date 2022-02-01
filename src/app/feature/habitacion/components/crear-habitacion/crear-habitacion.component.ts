@@ -1,13 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Habitacion } from "../../shared/model/habitacion";
-import { HabitacionService } from "../../shared/service/habitacion.service";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Habitacion } from '../../shared/model/habitacion';
+import { HabitacionService } from '../../shared/service/habitacion.service';
 
 @Component({
-  selector: "app-crear-habitacion",
-  templateUrl: "./crear-habitacion.component.html",
-  styleUrls: ["./crear-habitacion.component.css"],
+  selector: 'app-crear-habitacion',
+  templateUrl: './crear-habitacion.component.html',
+  styleUrls: ['./crear-habitacion.component.css'],
 })
 export class CrearHabitacionComponent implements OnInit {
 
@@ -31,16 +31,22 @@ export class CrearHabitacionComponent implements OnInit {
   }
 
   crearHabitacion(){
+    const MAX_NUMERO_HABITACION = 5;
+    const MIN_NO_CAMAS = 1;
+    const MIN_NO_BANNOS = 1;
+    const MAX_DESCRIPCION = 100;
+    const MAX_PISO = 2;
+    const MAX_ESTADO = 1;
     this.formulario = this.fb.group({
       id: [''],
-      numeroHabitacion: ['', [Validators.required, Validators.maxLength(5)]],
+      numeroHabitacion: ['', [Validators.required, Validators.maxLength(MAX_NUMERO_HABITACION)]],
       tipo: ['', [Validators.required]],
-      noCamas: ['', [Validators.required, Validators.min(1)]],
-      noBannos: ['', [Validators.required, Validators.min(1)]],
-      descripcion: ['', [Validators.required, Validators.maxLength(100)]],
+      noCamas: ['', [Validators.required, Validators.min(MIN_NO_CAMAS)]],
+      noBannos: ['', [Validators.required, Validators.min(MIN_NO_BANNOS)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(MAX_DESCRIPCION)]],
       precio: ['', [Validators.required]],
-      piso: ['', [Validators.required, Validators.maxLength(2)]],
-      estado: ['', [Validators.required, Validators.maxLength(1)]]
+      piso: ['', [Validators.required, Validators.maxLength(MAX_PISO)]],
+      estado: ['', [Validators.required, Validators.maxLength(MAX_ESTADO)]]
     });
   }
 

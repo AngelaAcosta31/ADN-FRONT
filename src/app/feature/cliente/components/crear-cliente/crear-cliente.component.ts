@@ -35,14 +35,17 @@ export class CrearClienteComponent implements OnInit {
   }
 
   crearCliente(){
+    const MAX_IDENTIFICACION = 15;
+    const MAX_TELEFONO = 15;
+    const MAX_SEXO = 1;
     this.formulario = this.fb.group({
       id: [''],
       nombre: ['', [ Validators.required ]],
       apellido: ['', [ Validators.required ]],
-      numeroIdentificacion: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(15) ]],
-      telefono: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(15)]],
+      numeroIdentificacion: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(MAX_IDENTIFICACION) ]],
+      telefono: ['', [Validators.required, Validators.pattern('[0-9]*'), Validators.maxLength(MAX_TELEFONO)]],
       correo: ['', [Validators.required, Validators.email]],
-      sexo: ['', [Validators.required, Validators.maxLength(1)]],
+      sexo: ['', [Validators.required, Validators.maxLength(MAX_SEXO)]],
       fechaNacimiento: ['', [Validators.required]],
       direccion: ['', [Validators.required]]
     });
