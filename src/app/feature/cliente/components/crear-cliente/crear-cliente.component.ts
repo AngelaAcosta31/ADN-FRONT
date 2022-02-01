@@ -65,7 +65,7 @@ export class CrearClienteComponent implements OnInit {
         this.router.navigate(['/clientes']);
       }
     }, (e) => {
-      (console.error(e));
+      e.error(e);
     });
     this.snackBar.open('El cliente fue creado exitosamente', '', {
       duration: 5000,
@@ -79,7 +79,7 @@ export class CrearClienteComponent implements OnInit {
     this.cliente.id = this.formulario.value.id;
     this.servicioCliente.actualizar(this.cliente).subscribe(() => {
       this.router.navigate(['/clientes']);
-    }, err => err.error().mensaje,
+    }, err => err.error(),
     );
   }
 
