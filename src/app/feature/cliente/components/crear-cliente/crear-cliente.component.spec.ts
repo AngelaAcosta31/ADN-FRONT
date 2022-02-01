@@ -79,7 +79,7 @@ describe('CrearClienteComponent', () => {
     component.guardarCliente();
     
   });
-
+/*
   it('Mensaje de error al crear el cliente', () => {
     component.formulario.controls.nombre.setValue(detalleCliente.nombre);
     component.formulario.controls.apellido.setValue(detalleCliente.apellido);
@@ -94,7 +94,7 @@ describe('CrearClienteComponent', () => {
     //expect(component.hayErrores).toBeTruthy();
     
   });
-
+**/
   it('Deberia actualizar el cliente', () => {
     component.cliente = detalleCliente;
     const spy = spyOn(clienteService, 'actualizar').and.returnValue(
