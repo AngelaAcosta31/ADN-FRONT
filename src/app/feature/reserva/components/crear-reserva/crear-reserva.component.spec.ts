@@ -86,7 +86,6 @@ describe('CrearReservaComponent', () => {
       of(true)
     );
     component.actualizarReserva();
-    component.cargarReserva();
     expect(spy).toHaveBeenCalled();
   });
 });

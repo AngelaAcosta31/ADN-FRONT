@@ -73,4 +73,12 @@ describe('ListarReservaComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  it('Error al intentar eliminar reserva', () => {
+    const spy = spyOn( reservaService, 'eliminarReserva').and.returnValue(
+      of(false)
+    );
+    component.eliminarReserva(detalleReserva);
+    expect(spy).toHaveBeenCalled();
+  });
+
 });
