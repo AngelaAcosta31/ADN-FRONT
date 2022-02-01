@@ -57,6 +57,21 @@ describe('CrearClienteComponent', () => {
     component.cliente = detalleCliente;
     expect(component.cliente).toBeDefined();
   });
+  it('deberia llenar el objeto cliente', () => {
+    component.cliente = detalleCliente;
+    detalleCliente.id = 1;
+    component.formulario.controls.id.setValue(detalleCliente.id);
+    component.formulario.controls.nombre.setValue(detalleCliente.nombre);
+    component.formulario.controls.apellido.setValue(detalleCliente.apellido);
+    component.formulario.controls.numeroIdentificacion.setValue(detalleCliente.numeroIdentificacion);
+    component.formulario.controls.telefono.setValue(detalleCliente.telefono);
+    component.formulario.controls.correo.setValue(detalleCliente.correo);
+    component.formulario.controls.sexo.setValue(detalleCliente.sexo);
+    component.formulario.controls.fechaNacimiento.setValue(detalleCliente.fechaNacimiento);
+    component.formulario.controls.direccion.setValue(detalleCliente.direccion);
+    expect(component.formulario.valid).toBeTruthy();
+    component.setValoresForm(detalleCliente);
+  });
   it('El formulario es inavlido porque esta vacio', () => {
     expect(component.formulario.valid).toBeFalsy();
   });
