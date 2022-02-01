@@ -24,6 +24,8 @@ export class CrearClienteComponent implements OnInit {
   direccion: string;
   formulario: FormGroup;
   titulo = 'Registrar Clientes';
+  hayErrores = false;
+  mensajeError: string;
 
   constructor(protected servicioCliente: ClienteService, private fb: FormBuilder,
               private router: Router, private snackBar: MatSnackBar, private activatedRoute: ActivatedRoute) {
@@ -59,14 +61,19 @@ export class CrearClienteComponent implements OnInit {
   }
 
   guardarCliente(){
+    this.hayErrores = false;
     this.crearObjetoCliente();
     this.servicioCliente.crearCliente(this.cliente).subscribe(data => {
       if ( data ){
         this.router.navigate(['/clientes']);
       }
     }, (e) => {
-      e.error(e);
+      console.log(this.hayErrores);
+      this.hayErrores = true;
+      this.mensajeError = e.error.mensaje;
     });
+
+
     this.snackBar.open('El cliente fue creado exitosamente', '', {
       duration: 5000,
       horizontalPosition: 'center',
@@ -79,7 +86,10 @@ export class CrearClienteComponent implements OnInit {
     this.cliente.id = this.formulario.value.id;
     this.servicioCliente.actualizar(this.cliente).subscribe(() => {
       this.router.navigate(['/clientes']);
-    }, err => err.error(),
+    }, err => {
+      this.hayErrores = true;
+      this.mensajeError = err.error.mensaje;
+    },
     );
   }
 

@@ -77,6 +77,22 @@ describe('CrearClienteComponent', () => {
     component.formulario.controls.direccion.setValue(detalleCliente.direccion);
     expect(component.formulario.valid).toBeTruthy();
     component.guardarCliente();
+    
+  });
+
+  it('Mensaje de error al crear el cliente', () => {
+    component.formulario.controls.nombre.setValue(detalleCliente.nombre);
+    component.formulario.controls.apellido.setValue(detalleCliente.apellido);
+    component.formulario.controls.numeroIdentificacion.setValue(detalleCliente.numeroIdentificacion);
+    component.formulario.controls.telefono.setValue(detalleCliente.telefono);
+    component.formulario.controls.correo.setValue(detalleCliente.correo);
+    component.formulario.controls.sexo.setValue('fe');
+    component.formulario.controls.fechaNacimiento.setValue(detalleCliente.fechaNacimiento);
+    component.formulario.controls.direccion.setValue(detalleCliente.direccion);
+    expect(component.formulario.valid).toBeFalsy();
+    component.guardarCliente();
+    //expect(component.hayErrores).toBeTrue();
+    
   });
 
   it('Deberia actualizar el cliente', () => {
