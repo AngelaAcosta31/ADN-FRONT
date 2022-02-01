@@ -57,7 +57,7 @@ describe('CrearClienteComponent', () => {
     component.cliente = detalleCliente;
     expect(component.cliente).toBeDefined();
   });
-  it('deberia llenar el objeto cliente', () => {
+  it('deberia llenar el formulario con el objeto cliente', () => {
     component.cliente = detalleCliente;
     detalleCliente.id = 1;
     component.formulario.controls.id.setValue(detalleCliente.id);

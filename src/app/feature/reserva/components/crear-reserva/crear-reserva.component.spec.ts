@@ -69,6 +69,18 @@ describe('CrearReservaComponent', () => {
   it(`Comprobar que sea 'Registrar Reservas'`, () => {
     expect(component.titulo).toEqual('Registrar Reservas');
   });
+  it('Deberia llenar el formulario de reserva', () => {
+    component.reserva = detalleReserva;
+    detalleReserva.id = 1;
+    component.formulario.controls.id.setValue(detalleReserva.id);
+    component.formulario.controls.valor.setValue(detalleReserva.valor);
+    component.formulario.controls.fechaEntrada.setValue(detalleReserva.fechaEntrada);
+    component.formulario.controls.fechaSalida.setValue(detalleReserva.fechaSalida);
+    component.formulario.controls.idHabitacion.setValue(detalleReserva.idHabitacion);
+    component.formulario.controls.idCliente.setValue(detalleReserva.idCliente);
+    expect(component.formulario.valid).toBeTruthy();
+    component.setValoresFormulario(detalleReserva);
+  });
 
   it('Deberia crear una reserva', () => {
     component.formulario.controls.valor.setValue(detalleReserva.valor);

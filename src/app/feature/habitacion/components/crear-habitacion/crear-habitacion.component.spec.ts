@@ -71,6 +71,22 @@ describe('CrearHabitacionComponent', () => {
   it(`Comprobar que sea 'Registrar Habitación'`, () => {
     expect(component.titulo).toEqual('Registrar Habitación');
   });
+  
+  it('Deberia crear el formulario de la habitacion', () => {
+    component.habitacion = detalleHabitacion;
+    detalleHabitacion.id = 1;
+    component.formulario.controls.id.setValue(detalleHabitacion.id);
+    component.formulario.controls.numeroHabitacion.setValue(detalleHabitacion.numeroHabitacion);
+    component.formulario.controls.tipo.setValue(detalleHabitacion.tipo);
+    component.formulario.controls.noCamas.setValue(detalleHabitacion.noCamas);
+    component.formulario.controls.noBannos.setValue(detalleHabitacion.noBannos);
+    component.formulario.controls.descripcion.setValue(detalleHabitacion.descripcion);
+    component.formulario.controls.precio.setValue(detalleHabitacion.precio);
+    component.formulario.controls.piso.setValue(detalleHabitacion.piso);
+    component.formulario.controls.estado.setValue(detalleHabitacion.estado);
+    expect(component.formulario.valid).toBeTruthy();
+    component.setValoresFormulario(detalleHabitacion);
+  });
 
   it('Deberia crear la habitacion', () => {
     component.formulario.controls.numeroHabitacion.setValue(detalleHabitacion.numeroHabitacion);
