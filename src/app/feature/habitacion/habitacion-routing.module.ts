@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CrearHabitacionComponent } from './components/crear-habitacion/crear-habitacion.component';
 import { ListarHabitacionComponent } from './components/listar-habitacion/listar-habitacion.component';
 
-const routes: Routes = [
+export const routes: Routes = [
     {
         path: '' ,
         component: ListarHabitacionComponent,

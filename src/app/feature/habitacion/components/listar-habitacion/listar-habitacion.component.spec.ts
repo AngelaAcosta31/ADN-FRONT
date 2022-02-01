@@ -1,8 +1,9 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location  } from '@angular/common';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import {  ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 import { CoreModule } from '@core/core.module';
 import { HttpService } from '@core/services/http.service';
 import { SharedModule } from '@shared/shared.module';
@@ -11,6 +12,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HabitacionRoutingModule } from '../../habitacion-routing.module';
 import { Habitacion } from '../../shared/model/habitacion';
 import { HabitacionService } from '../../shared/service/habitacion.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from '../../habitacion-routing.module';
 
 import { ListarHabitacionComponent } from './listar-habitacion.component';
 
@@ -18,6 +21,8 @@ describe('ListarHabitacionComponent', () => {
   let component: ListarHabitacionComponent;
   let fixture: ComponentFixture<ListarHabitacionComponent>;
   let servicioHabitacion: HabitacionService;
+  let location: Location;
+  let router: Router;
   const listadoHabitaciones: Habitacion[] = [
       new Habitacion ('230', 'SENCILLA', 1, 1, 'HABITACION SENCILLA', 2000, '2', 'D'),
   ];
@@ -34,7 +39,8 @@ describe('ListarHabitacionComponent', () => {
         HabitacionRoutingModule,
         CoreModule,
         SharedModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        RouterTestingModule.withRoutes(routes)
       ],
       providers: [HabitacionService, HttpService]
     })
@@ -42,7 +48,10 @@ describe('ListarHabitacionComponent', () => {
   });
 
   beforeEach(() => {
+    location = TestBed.get(Location);
+    router = TestBed.get(Router);
     fixture = TestBed.createComponent(ListarHabitacionComponent);
+    router.initialNavigation();
     component = fixture.componentInstance;
     servicioHabitacion = TestBed.inject(HabitacionService);
     spyOn(servicioHabitacion, 'consultar').and.returnValue(
@@ -80,4 +89,11 @@ describe('ListarHabitacionComponent', () => {
     component.eliminarHabitacion(detalleHabitacion);
     expect(spy).toHaveBeenCalled();
   });
+
+  it('deberia redireccionar a editar una habitacion', fakeAsync(() => {
+    const ID_HABITACION = 1;
+    component.actualizarHabitacion(ID_HABITACION);
+    tick();
+    expect(location.path()).toBe('/editarHabitacion/'+ID_HABITACION);
+  }));
 });

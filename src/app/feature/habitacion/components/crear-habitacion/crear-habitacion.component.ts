@@ -62,8 +62,6 @@ export class CrearHabitacionComponent implements OnInit {
       if ( data ){
         this.router.navigate(['/habitaciones']);
       }
-  }, (e) => {
-    e.error();
   });
   }
 
