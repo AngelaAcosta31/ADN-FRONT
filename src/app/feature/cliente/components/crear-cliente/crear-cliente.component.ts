@@ -65,20 +65,22 @@ export class CrearClienteComponent implements OnInit {
     this.crearObjetoCliente();
     this.servicioCliente.crearCliente(this.cliente).subscribe(data => {
       if ( data ){
+        this.snackBar.open('El cliente fue creado exitosamente', '', {
+          duration: 5000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
         this.router.navigate(['/clientes']);
       }
     }, (e) => {
-      console.log(this.hayErrores);
+      console.log(e);
       this.hayErrores = true;
       this.mensajeError = e.error.mensaje;
+      console.log(this.hayErrores);
     });
 
 
-    this.snackBar.open('El cliente fue creado exitosamente', '', {
-      duration: 5000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
-    });
+    
   }
 
   actualizar(){
@@ -86,11 +88,7 @@ export class CrearClienteComponent implements OnInit {
     this.cliente.id = this.formulario.value.id;
     this.servicioCliente.actualizar(this.cliente).subscribe(() => {
       this.router.navigate(['/clientes']);
-    }, err => {
-      this.hayErrores = true;
-      this.mensajeError = err.error.mensaje;
-    },
-    );
+    });
   }
 
   setValoresForm(cliente){
@@ -106,6 +104,7 @@ export class CrearClienteComponent implements OnInit {
       direccion: cliente.direccion
     });
   }
+
 
   cargarClientes(){
     this.activatedRoute.params.subscribe(

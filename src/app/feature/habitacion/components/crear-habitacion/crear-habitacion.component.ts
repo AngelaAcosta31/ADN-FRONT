@@ -72,7 +72,7 @@ export class CrearHabitacionComponent implements OnInit {
     this.habitacion.id = this.formulario.value.id;
     this.servicioHabitacion.actualizar(this.habitacion).subscribe( () => {
       this.router.navigate(['/habitaciones']);
-    }, er => er.error());
+    });
   }
 
   setValoresFormulario(habitacion){

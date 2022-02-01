@@ -86,12 +86,12 @@ describe('CrearClienteComponent', () => {
     component.formulario.controls.numeroIdentificacion.setValue(detalleCliente.numeroIdentificacion);
     component.formulario.controls.telefono.setValue(detalleCliente.telefono);
     component.formulario.controls.correo.setValue(detalleCliente.correo);
-    component.formulario.controls.sexo.setValue('fe');
-    component.formulario.controls.fechaNacimiento.setValue(detalleCliente.fechaNacimiento);
+    component.formulario.controls.sexo.setValue(detalleCliente.sexo);
+    component.formulario.controls.fechaNacimiento.setValue('2023-02-01');
     component.formulario.controls.direccion.setValue(detalleCliente.direccion);
-    expect(component.formulario.valid).toBeFalsy();
+    expect(component.formulario.valid).toBeFalse();
     component.guardarCliente();
-    //expect(component.hayErrores).toBeTrue();
+    expect(component.hayErrores).toBeTruthy();
     
   });
 

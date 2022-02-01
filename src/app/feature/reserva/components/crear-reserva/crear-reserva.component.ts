@@ -88,7 +88,7 @@ export class CrearReservaComponent implements OnInit {
     this.servicioReserva.actualizar(this.reserva).subscribe(
       () => {
         this.route.navigate(['/reservas']);
-      }, er => er.error());
+      });
   }
 
   setValoresFormulario(reserva){
