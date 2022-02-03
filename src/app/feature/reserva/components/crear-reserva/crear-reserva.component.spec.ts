@@ -82,6 +82,11 @@ describe('CrearReservaComponent', () => {
     component.reserva = detalleReserva;
     expect(component.reserva).toBeDefined();
   });
+
+  it('El formulario es inavlido porque esta vacio', () => {
+    expect(component.formulario.valid).toBeFalsy();
+  });
+  
   it('Deberia llenar el formulario de reserva', () => {
     component.reserva = detalleReserva;
     detalleReserva.id = 1;
@@ -95,9 +100,6 @@ describe('CrearReservaComponent', () => {
     component.setValoresFormulario(detalleReserva);
   });
 
-  it('El formulario es inavlido porque esta vacio', () => {
-    expect(component.formulario.valid).toBeFalsy();
-  });
 
   it(`Comprobar que sea 'Registrar Reservas'`, () => {
     expect(component.titulo).toEqual('Registrar Reservas');

@@ -20,7 +20,7 @@ import { ReservaComponent } from './components/reserva/reserva.component';
     CommonModule,
     ReservaRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
   ],providers:[ReservaService]
 })
 export class ReservaModule { }
