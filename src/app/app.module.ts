@@ -10,9 +10,9 @@ import { ClienteModule } from './feature/cliente/cliente.module';
 import { ReservaModule } from './feature/reserva/reserva.module';
 import { HabitacionModule } from './feature/habitacion/habitacion.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from '@shared/shared.module';
 import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '@shared/shared.module';
 
 
 

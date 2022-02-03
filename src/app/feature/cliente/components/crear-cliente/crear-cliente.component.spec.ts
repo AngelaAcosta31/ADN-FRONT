@@ -22,7 +22,6 @@ describe('CrearClienteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      
       imports: [
         CommonModule,
         HttpClientTestingModule,
@@ -103,7 +102,7 @@ describe('CrearClienteComponent', () => {
     component.formulario.controls.telefono.setValue(detalleCliente.telefono);
     component.formulario.controls.correo.setValue(detalleCliente.correo);
     component.formulario.controls.sexo.setValue(detalleCliente.sexo);
-    component.formulario.controls.fechaNacimiento.setValue('2022-02-02');
+    component.formulario.controls.fechaNacimiento.setValue('2022-02-03');
     component.formulario.controls.direccion.setValue(detalleCliente.direccion);
     expect(component.formulario.valid).toBeFalse();
     const spy = spyOn(clienteService, 'crearCliente').and.returnValue(

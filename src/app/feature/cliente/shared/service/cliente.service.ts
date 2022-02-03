@@ -6,11 +6,7 @@ import { Cliente } from '../model/cliente';
 
 const URL = environment.endpoint + '/clientes';
 
-@Injectable(
-  {
-    providedIn: 'root'
-  }
-)
+@Injectable()
 export class ClienteService {
 
   constructor(protected http: HttpService) {}

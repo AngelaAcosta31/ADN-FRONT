@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint: 'http://localhost:9090/reservacionHotel',
+  endpoint: '/reservacionHotel',
 };
 
 /*

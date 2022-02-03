@@ -5,6 +5,8 @@ import { ListarClienteComponent } from './components/listar-cliente/listar-clien
 import { ClienteRoutingModule } from './cliente-routing.module';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
+import { ClienteService } from './shared/service/cliente.service';
+import { ClienteComponent } from './components/cliente/cliente.component';
 
 
 
@@ -15,13 +17,15 @@ import { SharedModule } from '@shared/shared.module';
 
     CrearClienteComponent,
     ListarClienteComponent,
+    ClienteComponent,
   ],
   imports: [
     CommonModule,
     ClienteRoutingModule,
     CoreModule,
     SharedModule
-  ]
+  ],
+  providers:[ClienteService]
 })
 
 export class ClienteModule { }

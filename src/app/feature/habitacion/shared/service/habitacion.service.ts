@@ -6,9 +6,7 @@ import { Habitacion } from '../model/habitacion';
 
 const URL = environment.endpoint + '/habitaciones';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class HabitacionService {
 
   constructor( protected http: HttpService) {}

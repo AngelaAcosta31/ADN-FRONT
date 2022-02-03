@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { HttpService } from '@core/services/http.service';
 import { environment } from 'src/environments/environment';
-import { Cliente } from '../model/cliente';
+import { Cliente } from '@cliente/shared/model/cliente';
 
 
 import { ClienteService } from './cliente.service';

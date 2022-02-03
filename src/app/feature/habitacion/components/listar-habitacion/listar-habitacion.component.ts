@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
@@ -37,10 +38,8 @@ export class ListarHabitacionComponent implements OnInit {
   }
 
   eliminarHabitacion(habitacion: Habitacion){
-    this.habitacionService.eliminarHabitacion(habitacion.id).subscribe(data => {
-      if ( data === true ){
-        this.habitacion.pop(habitacion);
-      }
+    this.habitacionService.eliminarHabitacion(habitacion.id).subscribe(() => {
+      this.listaHabitaciones = this.listaHabitaciones.filter(h => h !== habitacion);
     });
     this.cargarHabitaciones();
 

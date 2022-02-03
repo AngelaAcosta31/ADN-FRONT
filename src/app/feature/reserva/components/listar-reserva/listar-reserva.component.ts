@@ -37,10 +37,8 @@ export class ListarReservaComponent implements OnInit {
   }
 
   eliminarReserva(reserva: Reserva){
-    this.reservaService.eliminarReserva(reserva).subscribe(data => {
-      if ( data === true){
-        this.reservas.pop(reserva);
-      }
+    this.reservaService.eliminarReserva(reserva).subscribe(() => {
+      this.listaReservas = this.listaReservas.filter(r => r !== reserva);
     });
     this.cargarReservas();
 

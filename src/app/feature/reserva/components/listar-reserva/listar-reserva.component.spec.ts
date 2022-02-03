@@ -79,6 +79,7 @@ describe('ListarReservaComponent', () => {
     );
     component.eliminarReserva(detalleReserva);
     expect(spy).toHaveBeenCalled();
+    fixture.destroy();
   });
 
   it('Error al intentar eliminar reserva', () => {

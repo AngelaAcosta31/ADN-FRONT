@@ -82,6 +82,7 @@ describe('ListarClienteComponent', () => {
     );
     component.eliminarCliente(detalleCliente);
     expect(spy).toHaveBeenCalled();
+    fixture.destroy();
   });
   it('Error al intentar eliminar cliente', () => {
     const spy = spyOn(clienteService, 'eliminarCliente').and.returnValue(

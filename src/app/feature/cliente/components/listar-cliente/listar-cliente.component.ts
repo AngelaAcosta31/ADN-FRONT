@@ -40,10 +40,10 @@ export class ListarClienteComponent implements OnInit {
   }
 
   eliminarCliente(idCliente: Cliente){
-    this.clienteService.eliminarCliente( idCliente).subscribe(data => {
-      if (data === true){
-        this.cliente.pop(idCliente);
-      }
+    this.clienteService.eliminarCliente( idCliente).subscribe(() => {
+
+      this.listaClientes = this.listaClientes.filter(c => c !== idCliente);
+
     });
     this.cargarClientes();
     this.snackBar.open( 'El cliente fue eliminado exitosamente', '' , {

@@ -1,6 +1,6 @@
 {
   "/reservacionHotel": {
-    "target": "http://localhost:9090/reservacionHotel",
+    "target": "http://localhost:9090",
     "logLevel": "debug"
   }
 

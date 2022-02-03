@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Cliente } from 'src/app/feature/cliente/shared/model/cliente';
+import { Cliente } from 'src/app/feature/cliente//shared/model/cliente';
 import { ClienteService } from 'src/app/feature/cliente/shared/service/cliente.service';
 import { Habitacion } from 'src/app/feature/habitacion/shared/model/habitacion';
 import { HabitacionService } from 'src/app/feature/habitacion/shared/service/habitacion.service';

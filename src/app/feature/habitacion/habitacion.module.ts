@@ -5,19 +5,22 @@ import { CrearHabitacionComponent } from './components/crear-habitacion/crear-ha
 import { HabitacionRoutingModule } from './habitacion-routing.module';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
+import { HabitacionService } from './shared/service/habitacion.service';
+import { HabitacionComponent } from './components/habitacion/habitacion.component';
 
 
 
 @NgModule({
   declarations: [
     ListarHabitacionComponent,
-    CrearHabitacionComponent
+    CrearHabitacionComponent,
+    HabitacionComponent
   ],
   imports: [
     CommonModule,
     HabitacionRoutingModule,
     CoreModule,
     SharedModule
-  ]
+  ],providers:[HabitacionService]
 })
 export class HabitacionModule { }

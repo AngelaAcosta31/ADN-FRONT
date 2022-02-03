@@ -5,19 +5,22 @@ import { ListarReservaComponent } from './components/listar-reserva/listar-reser
 import { ReservaRoutingModule } from './reserva-routing.module';
 import { CoreModule } from '@core/core.module';
 import { SharedModule } from '@shared/shared.module';
+import { ReservaService } from './shared/service/reserva.service';
+import { ReservaComponent } from './components/reserva/reserva.component';
 
 
 
 @NgModule({
   declarations: [
+    ListarReservaComponent,
     CrearReservaComponent,
-    ListarReservaComponent
+    ReservaComponent
   ],
   imports: [
     CommonModule,
     ReservaRoutingModule,
     CoreModule,
     SharedModule
-  ]
+  ],providers:[ReservaService]
 })
 export class ReservaModule { }

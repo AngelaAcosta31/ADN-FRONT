@@ -35,7 +35,17 @@
       ],
       "@shared/*": [
         "src/app/shared/*"
+      ],
+      "@cliente/*":[
+        "src/app/feature/cliente/*"
+      ],
+      "@habitacion/*":[
+        "src/app/feature/habitacion/*"
+      ],
+      "@reserva/*":[
+        "src/app/feature/reserva/*"
       ]
+      
     }
   },
   "angularCompilerOptions": {

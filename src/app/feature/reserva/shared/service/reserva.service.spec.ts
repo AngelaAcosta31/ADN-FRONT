@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { HttpService } from '@core/services/http.service';
 import { environment } from 'src/environments/environment';
-import { Reserva } from '../model/reserva';
+import { Reserva } from '@reserva/shared/model/reserva';
 
 import { ReservaService } from './reserva.service';
 

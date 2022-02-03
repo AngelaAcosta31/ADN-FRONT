@@ -6,11 +6,7 @@ import { Reserva } from '../model/reserva';
 
 const URL = environment.endpoint + '/reservas';
 
-@Injectable(
-  {
-    providedIn: 'root'
-  }
-)
+@Injectable()
 export class ReservaService {
 
   constructor(protected http: HttpService) { }
