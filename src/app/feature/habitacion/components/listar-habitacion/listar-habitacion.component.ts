@@ -31,12 +31,12 @@ export class ListarHabitacionComponent implements OnInit {
       this.dataSource.data = this.listaHabitaciones;
     });
   }
-        
+   /**   
   applyFilter(event: Event){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+ */  
   eliminarHabitacion(habitacion: Habitacion){
     this.habitacionService.eliminarHabitacion(habitacion.id).subscribe(() => {
       this.listaHabitaciones = this.listaHabitaciones.filter(h => h !== habitacion);

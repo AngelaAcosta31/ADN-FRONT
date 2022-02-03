@@ -33,12 +33,12 @@ export class ListarClienteComponent implements OnInit {
       this.dataSource.data = this.listaClientes;
     });
   }
-
+  /** 
   applyFilter(event: Event){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
+  */
   eliminarCliente(idCliente: Cliente){
     this.clienteService.eliminarCliente( idCliente).subscribe(() => {
 
